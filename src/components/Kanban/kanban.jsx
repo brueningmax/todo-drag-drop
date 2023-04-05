@@ -3,6 +3,7 @@ import { DragDropContext } from '@hello-pangea/dnd';
 import Column from './Column/column';
 import { fakeData } from '../../assets/fakeData';
 import { v4 as uuidv4 } from 'uuid';
+import SVG from '../../assets/icons/add-button.svg'
 
 
 export default function Kanban() {
@@ -67,8 +68,12 @@ export default function Kanban() {
     return (
         <DragDropContext onDragEnd={handleOnDragEnd} >
             <div className='flex w-full h-full overflow-y-hidden gap-1.5'>
-                {state.map((object, index) => <Column key={uuidv4()} droppableId={index} content={object} />)}
-                <button className='bg-lightBlue h-10 w-10 mt-2.5 rounded-lg'>ADD</button>
+                {state.map((object, index) =>
+                    
+                <Column key={uuidv4()} droppableId={index} content={object} />)}
+                <button className="flex justify-center items-center btn bg-lightBlue mt-2.5">
+                    <img src={SVG} className='w-6 invert' />
+                </button>
             </div>
 
         </DragDropContext>

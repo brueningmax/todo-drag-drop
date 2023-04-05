@@ -10,10 +10,10 @@ export const fakeData = [
                 customer: {
                     name: 'abz GmbH'
                 },
-                priority: 'Löhne',
+                priority: 'Hoch',
                 type: 'Personalwesen',
                 timeframe: 'Apr 2022',
-                note: 'Fuck this shit up',
+                note: '',
                 status: 'open',
             },
             {
@@ -46,7 +46,7 @@ export const fakeData = [
                 priority: 'Löhne',
                 type: 'Personalwesen',
                 timeframe: 'Apr 2022',
-                note: 'Fuck this shit up',
+                note: '',
                 status: 'open',
             },
         ]
@@ -136,7 +136,7 @@ export const fakeData = [
                 customer: {
                     name: 'abz GmbH'
                 },
-                priority: 'Löhne',
+                priority: 'Niedrig',
                 type: 'anderes',
                 timeframe: 'Apr 2022',
                 note: 'Fuck this shit up',
@@ -155,4 +155,56 @@ export const fakeData = [
             },
         ]
     },
+    {
+        user: {
+            id: 3,
+            name: 'completed',
+        },
+        todos: [
+            {
+                id: 24,
+                customer: {
+                    name: 'abz GmbH'
+                },
+                priority: 'Löhne',
+                type: 'Personalwesen',
+                timeframe: 'Apr 2022',
+                note: 'Fuck this shit up',
+                status: 'open',
+            },
+            {
+                id: 25,
+                customer: {
+                    name: 'abz GmbH'
+                },
+                priority: 'Löhne',
+                type: 'irgendwas',
+                timeframe: 'Apr 2022',
+                note: 'Fuck this shit up',
+                status: 'open',
+            },
+            {
+                id: 26,
+                customer: {
+                    name: 'abz GmbH'
+                },
+                priority: 'Hoch',
+                type: 'anderes',
+                timeframe: 'Apr 2022',
+                note: 'Fuck this shit up',
+                status: 'open',
+            },
+            {
+                id: 27,
+                customer: {
+                    name: 'abz GmbH'
+                },
+                priority: 'Mittel',
+                type: 'snack',
+                timeframe: 'Apr 2022',
+                note: 'Fuck this shit up',
+                status: 'open',
+            },
+        ]
+    }
 ]

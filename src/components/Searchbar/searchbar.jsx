@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import SVG from '../../assets/icons/filter.svg'
 
 export default function SearchBar() {
 
@@ -61,7 +62,9 @@ export default function SearchBar() {
                 {statuses.map(status => <option className="text-black" key={status} value={status}>{status}</option>)}
                 {months.map(month => <option className="text-black" key={month} value={month}>{month}</option>)}
             </select>
-
+            <button className="flex justify-center items-center btn bg-lightBlue mt-2.5">
+                <img src={SVG} className='w-6 invert' />
+            </button>
         </form>
     )
 }
