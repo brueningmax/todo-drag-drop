@@ -4,10 +4,13 @@ import Column from './Column/column';
 import { fakeData } from '../../assets/fakeData';
 import { v4 as uuidv4 } from 'uuid';
 import SVG from '../../assets/icons/add-button.svg'
+import Overlay from '../Overlays/BaseOverlay/baseOverlay';
+import NewUserOverlay from '../Overlays/NewUser/newUser';
 
 
 export default function Kanban() {
     const [state, setState] = useState(fakeData);
+    const [newUserVisibility, setnewUserVisibility] = useState(false)
 
 
     const reorder = (list, startIndex, endIndex) => {
@@ -66,16 +69,21 @@ export default function Kanban() {
     }
 
     return (
+        <>
+            <Overlay visibilityCondition={newUserVisibility} exitFunction={setnewUserVisibility} >
+                <NewUserOverlay exitFunction={setnewUserVisibility} />
+            </Overlay>
         <DragDropContext onDragEnd={handleOnDragEnd} >
             <div className='flex w-full h-full overflow-y-hidden gap-1.5'>
                 {state.map((object, index) =>
                     <Column key={uuidv4()} droppableId={index} content={object} />)}
                 
-                <button className="flex justify-center items-center btn bg-lightBlue mt-2.5">
+                    <button className="flex justify-center items-center btn bg-lightBlue mt-2.5" onClick={() => setnewUserVisibility(true)}>
                     <img src={SVG} className='w-6 invert' />
                 </button>
             </div>
 
         </DragDropContext>
+        </>
     );
 }
