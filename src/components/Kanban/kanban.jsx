@@ -69,8 +69,8 @@ export default function Kanban() {
         <DragDropContext onDragEnd={handleOnDragEnd} >
             <div className='flex w-full h-full overflow-y-hidden gap-1.5'>
                 {state.map((object, index) =>
-                    
-                <Column key={uuidv4()} droppableId={index} content={object} />)}
+                    <Column key={uuidv4()} droppableId={index} content={object} />)}
+                
                 <button className="flex justify-center items-center btn bg-lightBlue mt-2.5">
                     <img src={SVG} className='w-6 invert' />
                 </button>

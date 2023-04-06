@@ -16,6 +16,10 @@ module.exports = {
         high: '#F59300',
         medium: '#F9E323',
         low: '#83D25D',
+        highlight_urgent: '#f72a2a',
+        highlight_high: '#fa7e02',
+        highlight_medium: '#f7cf02',
+        highlight_low: '#50cc14',
       }
     },
   },

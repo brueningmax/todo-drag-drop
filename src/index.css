@@ -6,6 +6,9 @@
     .btn {
         @apply w-10 h-10 rounded-lg hover:bg-darkBlue hover:translate-y-[-3px] transition duration-200 ; 
     }
+    .input {
+        @apply border-2 border-darkGray rounded-md px-1;
+    }
 }
 @layer utilities {
     .scrollbar::-webkit-scrollbar {
