@@ -11,7 +11,7 @@ import { useState } from 'react'
 export default function Sidebar() {
     const [userSettingsVisibility, setUserSettingsVisibility] = useState(false)
     const [customerSettingsVisibility, setCustomerSettingsVisibility] = useState(false)
-    const [ownUserSettingsVisibility, setOwnUserSettingsVisibility] = useState(true)
+    const [ownUserSettingsVisibility, setOwnUserSettingsVisibility] = useState(false)
     return (
         <div className="bg-sky-900 w-14 flex flex-col items-center pt-24 gap-5">
             <button className="flex justify-center items-center btn bg-lightBlue mt-2.5" onClick={() => setUserSettingsVisibility(true)}>
