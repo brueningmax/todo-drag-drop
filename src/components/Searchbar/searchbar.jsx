@@ -24,45 +24,41 @@ export default function SearchBar() {
             yearsCopy.push(currentYear + i)
         }
         setYears(yearsCopy)
-    }, [])
-        
-        
-    const inputStyles = `py-1 border-b-2 border-darkGray ${selectedCustomer ? 'text-black' : 'text-softGray'}`
-    
+    }, [])   
     
     return (
-        <form className="flex w-min gap-12 bg-white justify-items-start py-2.5 px-6 border-black rounded-full">
+        <form className="flex w-min gap-12 bg-white justify-items-start py-1.5 px-6 border-black rounded-full">
     {/* Customer */}
-            <input className={`py-1 border-b-2 border-lightGray ${selectedCustomer ? 'text-black' : 'text-darkGray'}`} type="text" placeholder="Kundenname..." onChange={setSelectedCustomer} />
+            <input className={`my-1 border-b-2 border-lightGray ${selectedCustomer ? 'text-black' : 'text-darkGray'}`} type="text" placeholder="Kundenname..." onChange={setSelectedCustomer} />
             {/* Month */}
             <div className="flex">
-            <select className={`py-1 border-b-2 border-r-2 border-lightGray w-32 text-center ${selectedMonth ? 'text-black' : 'text-darkGray'}`} value="" onChange={setSelectedMonth}>
+                <select className={`my-1 border-b-2 border-r-2 border-lightGray w-32 text-center ${selectedMonth ? 'text-black' : 'text-darkGray'}`} value="" onChange={setSelectedMonth}>
                 <option value={selectedMonth} disabled hidden>Monat</option>
-                {months.map(month => <option className="text-black" key={month} value={month}>{month}</option>)}
+                {months.map(month => <option className="text-black " key={month} value={month}>{month}</option>)}
             </select>
     {/* Year */}
-                <select className={`py-1 border-b-2 border-lightGray w-32 text-center ${selectedYear ? 'text-black' : 'text-darkGray'}`} value="" onChange={setSelectedYear}>
+                <select className={`my-1 border-b-2 border-lightGray w-32 text-center ${selectedYear ? 'text-black' : 'text-darkGray'}`} value="" onChange={setSelectedYear}>
                 <option value={selectedYear} disabled hidden>Jahr</option>
-                {years.map(year => <option className="text-black" key={year} value={year}>{year}</option>)}
+                {years.map(year => <option className="text-black " key={year} value={year}>{year}</option>)}
             </select>
             </div>
     {/* Type */}
-            <select className={`py-1 border-b-2 border-lightGray ${selectedType ? 'text-black' : 'text-darkGray'}`} value="" onChange={setSelectedType}>
+            <select className={`my-1 border-b-2 border-lightGray ${selectedType ? 'text-black' : 'text-darkGray'}`} value="" onChange={setSelectedType}>
                 <option value={selectedType} disabled hidden>Auftag</option>
-                {types.map(type => <option className="text-black" key={type} value={type}>{type}</option>)}
+                {types.map(type => <option className="text-black " key={type} value={type}>{type}</option>)}
             </select>
     {/* Priority */}
-            <select className={`py-1 border-b-2 border-lightGray ${selectedPriority ? 'text-black' : 'text-darkGray'}`} value="" onChange={setSelectedPriority}>
+            <select className={`my-1 border-b-2 border-lightGray ${selectedPriority ? 'text-black' : 'text-darkGray'}`} value="" onChange={setSelectedPriority}>
                 <option value={selectedPriority} disabled hidden>Priorität</option>
-                {priorities.map(priority => <option className="text-black" key={priority} value={priority}>{priority}</option>)}
+                {priorities.map(priority => <option className="text-black " key={priority} value={priority}>{priority}</option>)}
             </select>
     {/* Status */}
-            <select className={`py-1 border-b-2 border-lightGray ${selectedStatus ? 'text-black' : 'text-darkGray'}`} value="" onChange={setSelectedStatus}>
+            <select className={`my-1 border-b-2 border-lightGray ${selectedStatus ? 'text-black' : 'text-darkGray'}`} value="" onChange={setSelectedStatus}>
                 <option value={selectedStatus} disabled hidden>Stand</option>
                 {statuses.map(status => <option className="text-black" key={status} value={status}>{status}</option>)}
-                {months.map(month => <option className="text-black" key={month} value={month}>{month}</option>)}
+                {months.map(month => <option className="text-black " key={month} value={month}>{month}</option>)}
             </select>
-            <button className="flex justify-center items-center btn bg-lightBlue mt-2.5">
+            <button className="flex justify-center items-center btn bg-lightBlue">
                 <img src={SVG} className='w-6 invert' />
             </button>
         </form>

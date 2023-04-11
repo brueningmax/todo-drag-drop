@@ -45,13 +45,6 @@ export default function Kanban() {
         const sInd = source.droppableId;
         const dInd = destination.droppableId;
 
-        console.log('info')
-        console.log(state)
-        console.log('sInd: ', sInd)
-        console.log('dInd: ', dInd)
-        console.log('info ende')
-        
-
         if (sInd === dInd) {
             const items = reorder(state[sInd], source.index, destination.index);
             const newState = structuredClone(state);
