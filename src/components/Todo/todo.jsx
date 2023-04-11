@@ -14,7 +14,7 @@ export default function Todo({ todo }) {
 
     return (
         <div className='pb-2.5'>
-            <div className="flex flex-col bg-white items-center shadow overflow-hidden rounded-md mr-1.5">
+            <div className="flex flex-col bg-white hover:bg-lightGray items-center shadow overflow-hidden rounded-md mr-1.5">
                 <div className={`flex ${colors[todo.priority]}  w-full px-1.5`}>
                     <span className="text-white">
                         {todo.priority}
