@@ -15,7 +15,7 @@ function createWindow() {
 
     // Load your React app's index.html file
     mainWindow.loadURL(
-        isDev ? 'http://localhost:5174' : `file://${path.join(__dirname, '../build/index.html')}`
+        isDev ? 'http://localhost:5173' : `file://${path.join(__dirname, '../build/index.html')}`
     );
 
     mainWindow.on('closed', () => {
