@@ -1,8 +1,9 @@
-const { app, BrowserWindow, Menu } = require('electron');
+const { app, BrowserWindow, Menu, powerSaveBlocker } = require('electron');
 const path = require('path');
 const isDev = require('electron-is-dev');
 
 let mainWindow;
+let pool;
 
 function createWindow() {
     mainWindow = new BrowserWindow({
@@ -24,7 +25,14 @@ function createWindow() {
     Menu.setApplicationMenu(null);
 }
 
-app.on('ready', createWindow);
+app.on('ready', () => {
+    import('../postgres/base.js').then(({ default: connectDatabase }) => {
+        pool = connectDatabase();
+        createWindow();
+    }).catch(error => {
+        console.error(error);
+    });
+});
 
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {
@@ -36,4 +44,14 @@ app.on('activate', () => {
     if (mainWindow === null) {
         createWindow();
     }
+});
+
+app.on('before-quit', async () => {
+    pool.end()
+        .then(() => {
+            console.log('Connection pool closed successfully');
+        })
+        .catch((err) => {
+            console.error('Error closing connection pool:', err);
+        });
 });
