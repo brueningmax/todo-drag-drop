@@ -1,6 +1,5 @@
 import { Droppable } from '@hello-pangea/dnd';
 import DraggableItem from '../Item/draggableItem';
-import { v4 as uuidv4 } from 'uuid';
 import DefaultColumnHead from './ColumnHeads/columnHead';
 import NotAssignedColumnHead from './ColumnHeads/notAssignedHead'
 import CompletedColumnHead from './ColumnHeads/completedColumnHead'
