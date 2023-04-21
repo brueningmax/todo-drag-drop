@@ -7,17 +7,16 @@ const { genericHandlers } = require('./handlers/generic.jsx')
 
 const handlerGroups = [
     genericHandlers,
-    userHandlers,
-    clientHandlers,
-    todoHandlers
+    // userHandlers,
+    // clientHandlers,
+    // todoHandlers
 ]
-function createHandlers(db) {
+function createHandlers() {
     handlers = {} 
     handlerGroups.forEach(handler => {
         handlers = Object.assign(handlers, handler)
     }) 
     for (let key in handlers) {
-        console.log(`handler ${handlers[key]} created`)
         ipcMain.handle(key, handlers[key]);
     }
 }

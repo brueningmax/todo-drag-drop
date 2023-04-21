@@ -11,7 +11,16 @@ import useDatabase from './sqlite3/scripts'
 const sqlite3 = require('sqlite3').verbose();
 
 function App() {
+  const [database, make_call] = useDatabase()
 
+  useEffect(() => {
+    console.log(database)
+  }, [database])
+
+  useEffect(() => {
+    make_call()
+  }, [])
+  
   const testDB = () => {
 
     // Open the SQLite database
@@ -42,7 +51,6 @@ function App() {
     });
   }
 
-useDatabase()
 
 
   return (

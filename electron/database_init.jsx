@@ -1,19 +1,18 @@
 const sqlite3 = require('sqlite3');
 
-const setupDB = (path) => {
-    db = new sqlite3.Database(path);
-    
-    // Perform database initialization tasks, such as creating tables or setting up initial data
-    db.serialize(() => {
-        try {
-            db.run(`
+const setupDB = async (path) => {
+  db = new sqlite3.Database(path);
+  // Perform database initialization tasks, such as creating tables or setting up initial data
+  db.serialize(() => {
+    try {
+      db.run(`
           CREATE TABLE IF NOT EXISTS "client" (
             "id" INTEGER PRIMARY KEY AUTOINCREMENT,
             "name" TEXT NOT NULL,
             "address" TEXT NOT NULL,
             "contact" TEXT NOT NULL
           );`);
-            db.run(`
+      db.run(`
           CREATE TABLE IF NOT EXISTS "user" (
             "id" INTEGER PRIMARY KEY AUTOINCREMENT,
             "name" TEXT NOT NULL,
@@ -21,7 +20,7 @@ const setupDB = (path) => {
             "role" INTEGER
           );
         `);
-            db.run(`
+      db.run(`
           CREATE TABLE IF NOT EXISTS "todo" (
             "id" INTEGER PRIMARY KEY AUTOINCREMENT,
             "priority" TEXT NOT NULL,
@@ -36,23 +35,18 @@ const setupDB = (path) => {
             CONSTRAINT "fk_todo__user" FOREIGN KEY ("user") REFERENCES "user" ("id") ON DELETE CASCADE
           );
         `)
-        } catch (err) {
-            console.error('Error inserting data:', err);
-        }
-    
-        // Close the database connection after all operations are completed
-        db.close((err) => {
-            if (err) {
-                console.error('Error closing the database:', err);
-            } else {
-                console.log('Database closed successfully');
-            }
-        });
-    });
-    return db;
+      // Close the database connection after all operations are completed
+    } catch (err) {
+      console.error('Error inserting data:', err);
+    }
+
+  });
+  db.close()
+
+  return db;
 }
 
 
 module.exports = {
-    setupDB
+  setupDB
 };

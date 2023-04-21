@@ -5,7 +5,7 @@ const { createHandlers } = require('./ipcMainHandler.jsx');
 const { setupDB } = require('./database_init.jsx');
 
 let mainWindow;
-let db;
+
 
 function createWindow() {
     mainWindow = new BrowserWindow({
@@ -29,10 +29,10 @@ function createWindow() {
     mainWindow.webContents.openDevTools();
 }
 
-app.on('ready', () => {
+app.on('ready', async () => {
+    setupDB('./todos.db');
+    createHandlers()
     createWindow();
-    db = setupDB('./todos.db');
-    createHandlers(db)
 })
 
 app.on('window-all-closed', () => {
