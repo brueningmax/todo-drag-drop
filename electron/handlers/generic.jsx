@@ -1,59 +1,65 @@
 const sqlite3 = require('sqlite3');
+const { getAll } = require('./queries/index.jsx')
 
 
 
 const genericHandlers = {
     getAllData: async (event, args) => {
-        const tables = ['user', 'client','todo']
-        let results = []
-        let data = {}
         try {
-            db = await new sqlite3.Database('./todos.db');
-            for (let i = 0; i < tables.length; i++) {
-                const table = tables[i];
-                const rows = await new Promise((resolve, reject) => {
-                    db.all(`SELECT * FROM ${table}`, (err, rows) => {
-                        if (err) {
-                            reject(err);
-                        } else {
-                            resolve(rows);
-                        }
-                    });
+            db = new sqlite3.Database('./todos.db');
+            const data = await new Promise((resolve, reject) => {
+                db.all(getAll, (err, rows) => {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        const result = rows.reduce((acc, curr) => {
+                            const user = acc[curr.id] || {
+                                id: curr.id,
+                                name: curr.name,
+                                password: curr.password,
+                                role: curr.role,
+                                todos: []
+                            };
+
+                            user.todos.push({
+                                id: curr.todo_id,
+                                priority: curr.priority,
+                                order: curr.order,
+                                type: curr.type,
+                                timeframe: curr.timeframe,
+                                notes: curr.notes,
+                                status: curr.status,
+                                client: curr.client_id ? {
+                                    id: curr.client_id,
+                                    name: curr.client_name,
+                                    address: curr.client_address,
+                                    contact: curr.client_contact
+                                } : null,
+                                nextTodoId: curr.next_todo_id
+                            });
+
+                            acc[curr.id] = user;
+
+                            return acc;
+                        }, {});
+
+                        const resultArray = Object.values(result);
+                        event.sender.send('getAllData', resultArray);
+                    }
                 });
-                data[table] = rows;
-            }
-            console.log(data);
+            });
         } catch (error) {
             console.error(error);
         } finally {
             db.close();
-            event.sender.send('getAllData', data)
         }
-
-            // db = await new sqlite3.Database('./todos.db');
-            // await db.all(`SELECT * FROM ${table}`, async (err, rows) => {
-            //     if (err) {
-            //         console.error(err.message);
-            //     } else {
-            //         data[table] = rows
-            //         console.log(rows)
-            //     }
-            //     db.close()
-            // })
-            // event.sender.send('getAllData', data);
-            
-            
-        // })
-
-            
-
-        // Loop through each table name in the `tables` array
-        // console.log(results)
     },
+
     deleteAllTodos: (event, args) => {
         // do block 
         event.sender.send('deleteAllTodos', 'deleteAllTodos');
     },
+
 }
 
 module.exports = {

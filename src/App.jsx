@@ -14,45 +14,13 @@ function App() {
   const [database, make_call] = useDatabase()
 
   useEffect(() => {
-    console.log(database)
+    console.log(database?.[0])
   }, [database])
 
   useEffect(() => {
     make_call()
   }, [])
   
-  const testDB = () => {
-
-    // Open the SQLite database
-    const db = new sqlite3.Database('todos.db');
-    console.log(db)
-    // Define the SQL query
-    const query = 'SELECT * FROM client';
-
-    // Execute the query using db.run
-    db.run(query, [], (err) => {
-      if (err) {
-        console.error(err);
-      } else {
-        // Query successful, fetch the results
-        db.all(query, [], (err, rows) => {
-          if (err) {
-            console.error(err);
-          } else {
-            // Print the retrieved rows
-            console.log('Client table rows:');
-            console.log(rows);
-          }
-          // Close the database connection
-          db.close();
-          console.log(db)
-        });
-      }
-    });
-  }
-
-
-
   return (
     <div className='flex fixed top-0 left-0 w-full h-full'>
       <Login/>
