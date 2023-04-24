@@ -24,16 +24,20 @@ const setupDB = async (path) => {
           CREATE TABLE IF NOT EXISTS "todo" (
             "id" INTEGER PRIMARY KEY AUTOINCREMENT,
             "priority" TEXT NOT NULL,
-            "order" TEXT NOT NULL,
             "type" TEXT NOT NULL,
-            "timeframe" TEXT NOT NULL,
             "notes" TEXT NOT NULL,
             "status" TEXT NOT NULL,
             "user" INTEGER NOT NULL,
             "client" INTEGER NOT NULL,
+            "next_todo" INTEGER,
+            "previous_todo" INTEGER,
+            "month" TEXT CHECK(month IN ('jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'dez')),
+            "year" INTEGER,
             CONSTRAINT "fk_todo__client" FOREIGN KEY ("client") REFERENCES "client" ("id") ON DELETE CASCADE,
-            CONSTRAINT "fk_todo__user" FOREIGN KEY ("user") REFERENCES "user" ("id") ON DELETE CASCADE
-          );
+            CONSTRAINT "fk_todo__user" FOREIGN KEY ("user") REFERENCES "user" ("id") ON DELETE CASCADE,
+            CONSTRAINT "fk_todo__next_todo" FOREIGN KEY ("next_todo") REFERENCES "todo" ("id") ON DELETE CASCADE,
+            CONSTRAINT "fk_todo__previous_todo" FOREIGN KEY ("previous_todo") REFERENCES "todo" ("id") ON DELETE CASCADE
+        );
         `)
       // Close the database connection after all operations are completed
     } catch (err) {
