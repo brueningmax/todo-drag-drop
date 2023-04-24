@@ -42,7 +42,10 @@ const setupDB = async (path) => {
 
   });
   db.close()
-
+  db.all('SELECT * FROM user', (err, rows) => {
+    console.table(rows)
+  })
+  db.close()
   return db;
 }
 
