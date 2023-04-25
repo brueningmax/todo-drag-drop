@@ -1,7 +1,7 @@
 WITH RECURSIVE cte AS (
   SELECT id, user, priority, previous_todo, next_todo
   FROM todo
-  WHERE previous_todo IS NULL
+  WHERE previous_todo = 0
   
   UNION ALL
   
