@@ -38,6 +38,10 @@ const setupDB = async (path) => {
             CONSTRAINT "fk_todo__next_todo" FOREIGN KEY ("next_todo") REFERENCES "todo" ("id") ON DELETE CASCADE,
             CONSTRAINT "fk_todo__previous_todo" FOREIGN KEY ("previous_todo") REFERENCES "todo" ("id") ON DELETE CASCADE
         );
+            CONSTRAINT "fk_todo__user" FOREIGN KEY ("user") REFERENCES "user" ("id") ON DELETE CASCADE,
+            CONSTRAINT "fk_todo__next_todo" FOREIGN KEY ("next_todo") REFERENCES "todo" ("id") ON DELETE CASCADE,
+            CONSTRAINT "fk_todo__previous_todo" FOREIGN KEY ("previous_todo") REFERENCES "todo" ("id") ON DELETE CASCADE
+        );
         `)
       // Close the database connection after all operations are completed
     } catch (err) {
