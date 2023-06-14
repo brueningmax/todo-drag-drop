@@ -1,210 +1,81 @@
 export const fakeData = [
     {
-        user: {
-            id: 0,
-            name: 'Nicht zugeordnet',
+        "user": {
+            "id": 1,
+            "name": "Not assigned"
         },
-        todos: [
+        "todos": [
             {
-                id: 110,
-                customer: {
-                    name: 'abz GmbH'
-                },
-                priority: 'Hoch',
-                type: 'Personalwesen',
-                timeframe: 'Apr 2022',
-                note: '',
-                status: 'open',
-            },
-            {
-                id: 11,
-                customer: {
-                    name: 'abz GmbH'
-                },
-                priority: 'Löhne',
-                type: 'Personalwesen',
-                timeframe: 'Apr 2022',
-                note: 'Fuck this shit up',
-                status: 'open',
-            },
-            {
-                id: 12,
-                customer: {
-                    name: 'abz GmbH'
-                },
-                priority: 'Löhne',
-                type: 'Personalwesen',
-                timeframe: 'Apr 2022',
-                note: 'Fuck this shit up',
-                status: 'open',
-            },
-            {
-                id: 13,
-                customer: {
-                    name: 'abz GmbH'
-                },
-                priority: 'Löhne',
-                type: 'Personalwesen',
-                timeframe: 'Apr 2022',
-                note: '',
-                status: 'open',
-            },
+                "id": 3,
+                "priority": "high",
+                "type": "Salary",
+                "notes": "Something",
+                "status": "open",
+                "nextTodo": null,
+                "previousTodo": null,
+                "month": "apr",
+                "year": 2023,
+                "user": 1,
+                "client": {
+                    "id": 1,
+                    "name": "Whaterver AG",
+                    "address": "somewhere in world",
+                    "contact": "Ich nicht"
+                }
+            }
         ]
     },
     {
-        user: {
-            id: 1,
-            name: 'Diana',
+        "user": {
+            "id": 3,
+            "name": "Admin"
         },
-        todos: [
-            {   
-                id: 0,
-                customer: {
-                    name: 'abz GmbH'
-                },
-                priority: 'Löhne',
-                type: 'Personalwesen',
-                timeframe: 'Apr 2022',
-                note: 'Fuck this shit up',
-                status: 'open',
-            },
-            {   
-                id: 1,
-                customer: {
-                    name: 'abz GmbH'
-                },
-                priority: 'Löhne',
-                type: 'Personalwesen',
-                timeframe: 'Apr 2022',
-                note: 'Fuck this shit up',
-                status: 'open',
-            },
-            {   
-                id: 2,
-                customer: {
-                    name: 'abz GmbH'
-                },
-                priority: 'Löhne',
-                type: 'Personalwesen',
-                timeframe: 'Apr 2022',
-                note: 'Fuck this shit up',
-                status: 'open',
-            },
-            {   
-                id: 3,
-                customer: {
-                    name: 'abz GmbH'
-                },
-                priority: 'Löhne',
-                type: 'Personalwesen',
-                timeframe: 'Apr 2022',
-                note: 'Fuck this shit up',
-                status: 'open',
-            },
+        "todos": [
+            null
         ]
     },
     {
-        user: {
-            id: 2,
-            name: 'Hurda',
+        "user": {
+            "id": 2,
+            "name": "Compleated"
         },
-        todos: [
-            {   
-                id: 4,
-                customer: {
-                    name: 'abz GmbH'
-                },
-                priority: 'Löhne',
-                type: 'Personalwesen',
-                timeframe: 'Apr 2022',
-                note: 'Fuck this shit up',
-                status: 'open',
-            },
-            {   
-                id: 5,
-                customer: {
-                    name: 'abz GmbH'
-                },
-                priority: 'Löhne',
-                type: 'irgendwas',
-                timeframe: 'Apr 2022',
-                note: 'Fuck this shit up',
-                status: 'open',
-            },
-            {   
-                id: 6,
-                customer: {
-                    name: 'abz GmbH'
-                },
-                priority: 'Niedrig',
-                type: 'anderes',
-                timeframe: 'Apr 2022',
-                note: 'Fuck this shit up',
-                status: 'open',
-            },
-            {   
-                id: 7,
-                customer: {
-                    name: 'abz GmbH'
-                },
-                priority: 'Löhne',
-                type: 'snack',
-                timeframe: 'Apr 2022',
-                note: 'Fuck this shit up',
-                status: 'open',
-            },
-        ]
-    },
-    {
-        user: {
-            id: 3,
-            name: 'completed',
-        },
-        todos: [
+        "todos": [
             {
-                id: 24,
-                customer: {
-                    name: 'abz GmbH'
-                },
-                priority: 'Löhne',
-                type: 'Personalwesen',
-                timeframe: 'Apr 2022',
-                note: 'Fuck this shit up',
-                status: 'open',
+                "id": 1,
+                "priority": "high",
+                "type": "Salary",
+                "notes": "Something",
+                "status": "completed",
+                "nextTodo": 2,
+                "previousTodo": null,
+                "month": "apr",
+                "year": 2023,
+                "user": 2,
+                "client": {
+                    "id": 1,
+                    "name": "Whaterver AG",
+                    "address": "somewhere in world",
+                    "contact": "Ich nicht"
+                }
             },
             {
-                id: 25,
-                customer: {
-                    name: 'abz GmbH'
-                },
-                priority: 'Löhne',
-                type: 'irgendwas',
-                timeframe: 'Apr 2022',
-                note: 'Fuck this shit up',
-                status: 'open',
-            },
-            {
-                id: 26,
-                customer: {
-                    name: 'abz GmbH'
-                },
-                priority: 'Hoch',
-                type: 'anderes',
-                timeframe: 'Apr 2022',
-                note: 'Fuck this shit up',
-                status: 'open',
-            },
-            {
-                id: 27,
-                customer: {
-                    name: 'abz GmbH'
-                },
-                priority: 'Mittel',
-                type: 'snack',
-                timeframe: 'Apr 2022',
-                note: 'Fuck this shit up',
-                status: 'open',
-            },
+                "id": 2,
+                "priority": "high",
+                "type": "Salary",
+                "notes": "Something",
+                "status": "completed",
+                "nextTodo": null,
+                "previousTodo": 1,
+                "month": "apr",
+                "year": 2023,
+                "user": 2,
+                "client": {
+                    "id": 1,
+                    "name": "Whaterver AG",
+                    "address": "somewhere in world",
+                    "contact": "Ich nicht"
+                }
+            }
         ]
     }
 ]

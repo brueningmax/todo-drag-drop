@@ -6,10 +6,23 @@ export default function Todo({ todo }) {
     const divStyling = "flex w-full justify-between text-sm "
 
     const colors = {
-        Löhne: 'bg-urgent',
-        Hoch: 'bg-high',
-        Mittel: 'bg-medium',
-        Niedrig: 'bg-low',
+        salary: 'bg-urgent',
+        high: 'bg-high',
+        medium: 'bg-medium',
+        low: 'bg-low',
+    }
+
+    const statusColors = {
+        open: 'bg-urgent',
+        inProcess: 'bg-medium',
+        completed: 'bg-low',
+    }
+
+    const priorities = {
+        salary: 'Löhne',
+        high: 'Hoch',
+        medium: 'Mittel',
+        low: 'Niedrig',
     }
 
     return (
@@ -17,13 +30,13 @@ export default function Todo({ todo }) {
             <div className="flex flex-col bg-white hover:bg-lightGray items-center shadow overflow-hidden rounded-md mr-1.5">
                 <div className={`flex ${colors[todo.priority]}  w-full px-1.5`}>
                     <span className="text-white">
-                        {todo.priority}
+                        {priorities[todo.priority]}
                     </span>
                 </div>
                 <div className="px-1.5 w-full">
                     <div className={divStyling}>
                         <span>Kunde:</span>
-                        <span>{todo.customer.name}</span>
+                        <span>{todo.client.name}</span>
                     </div>
                     <div className={divStyling}>
                         <span>Auftrag</span>
@@ -31,21 +44,21 @@ export default function Todo({ todo }) {
                     </div>
                     <div className={divStyling}>
                         <span>Zeitraum</span>
-                        <span>{todo.timeframe}</span>
+                        <span>{todo.month} {todo.year}</span>
                     </div>
                     <div className={divStyling + " items-center"}>
                         <span>Status</span>
-                        <div className="w-2.5 h-2.5 bg-urgent rounded-full ml-auto mr-1"></div>
+                        <div className={`w-2.5 h-2.5 ${statusColors[todo.status]} rounded-full ml-auto mr-1`}></div>
                         <span>{todo.status}</span>
                     </div>
                 </div>
-                {todo.note &&
+                {todo.notes &&
                     <div className={divStyling + "p-1.5"}>
                         <span>Bemerkung</span>
                         <div className='group'>
                             <img src={SVG} className=' w-4 cursor-help tooltip' />
                             <div className='hidden group-hover:block absolute  drop-shadow-xl'>
-                                <Tooltip  text={todo.note}/>
+                                <Tooltip  text={todo.notes}/>
                             </div>
                         </div>
                     </div>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { DragDropContext } from '@hello-pangea/dnd';
 import Column from './Column/column';
 import { fakeData } from '../../assets/fakeData';
@@ -8,9 +8,13 @@ import Overlay from '../Overlays/BaseOverlay/baseOverlay';
 import NewUserOverlay from '../Overlays/NewUser/newUser';
 
 
-export default function Kanban() {
-    const [state, setState] = useState(fakeData);
+export default function Kanban({boardData}) {
+    const [state, setState] = useState(boardData);
     const [newUserVisibility, setnewUserVisibility] = useState(false)
+
+    useEffect(() => {
+        setState(boardData)
+    }, [boardData])
 
 
     const reorder = (list, startIndex, endIndex) => {
@@ -67,7 +71,7 @@ export default function Kanban() {
                 <NewUserOverlay exitFunction={setnewUserVisibility} />
             </Overlay>
         <DragDropContext onDragEnd={handleOnDragEnd} >
-            <div className='flex w-full h-full overflow-y-hidden gap-1.5'>
+            <div print={console.log(state)} className='flex w-full h-full overflow-y-hidden gap-1.5'>
                 {state.map((object, index) =>
                     <Column key={uuidv4()} droppableId={index} content={object} />)}
                 

@@ -22,6 +22,7 @@ function createWindow() {
         mainWindow = null;
     });
     Menu.setApplicationMenu(null);
+    mainWindow.webContents.openDevTools();
 }
 
 app.on('ready', createWindow);
