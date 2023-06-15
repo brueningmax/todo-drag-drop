@@ -4,10 +4,13 @@ import { fakeData } from "../../assets/fakeData";
 export const todosSlice = createSlice({
     name: "todos",
     initialState: {
-        list: fakeData,
+        list: [],
     },
     reducers: {
-    }
+        setTodos: (state, action) => {
+            state.list = action.payload;
+        },
+    },
 })
-export const { add_todo } = todosSlice.actions;
+export const { setTodos, testStore } = todosSlice.actions;
 export default todosSlice.reducer;

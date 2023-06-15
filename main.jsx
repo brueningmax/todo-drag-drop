@@ -1,6 +1,7 @@
-const { app, BrowserWindow, Menu } = require('electron');
+const { app, BrowserWindow, Menu, ipcMain } = require('electron');
 const path = require('path');
 const isDev = require('electron-is-dev');
+
 
 let mainWindow;
 
@@ -21,11 +22,20 @@ function createWindow() {
     mainWindow.on('closed', () => {
         mainWindow = null;
     });
+
+
+
     Menu.setApplicationMenu(null);
     mainWindow.webContents.openDevTools();
 }
 
-app.on('ready', createWindow);
+app.on('ready', () => {
+    // Handle close-window IPC message
+    ipcMain.handle('close-window', () => {
+        app.quit();
+    })
+    createWindow()
+});
 
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {

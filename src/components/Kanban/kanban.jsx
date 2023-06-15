@@ -6,9 +6,11 @@ import { v4 as uuidv4 } from 'uuid';
 import SVG from '../../assets/icons/add-button.svg'
 import Overlay from '../Overlays/BaseOverlay/baseOverlay';
 import NewUserOverlay from '../Overlays/NewUser/newUser';
+import { useSelector } from 'react-redux';
 
 
-export default function Kanban({boardData}) {
+export default function Kanban() {
+    const boardData = useSelector((store) => store.todos.list)
     const [state, setState] = useState(boardData);
     const [newUserVisibility, setnewUserVisibility] = useState(false)
 
@@ -72,6 +74,7 @@ export default function Kanban({boardData}) {
             </Overlay>
         <DragDropContext onDragEnd={handleOnDragEnd} >
             <div print={console.log(state)} className='flex w-full h-full overflow-y-hidden gap-1.5'>
+                {state.map((object) => {console.log(object)})}
                 {state.map((object, index) =>
                     <Column key={uuidv4()} droppableId={index} content={object} />)}
                 
