@@ -73,8 +73,7 @@ export default function Kanban() {
                 <NewUserOverlay exitFunction={setnewUserVisibility} />
             </Overlay>
         <DragDropContext onDragEnd={handleOnDragEnd} >
-            <div print={console.log(state)} className='flex w-full h-full overflow-y-hidden gap-1.5'>
-                {state.map((object) => {console.log(object)})}
+            <div className='flex w-full h-full overflow-y-hidden gap-1.5'>
                 {state.map((object, index) =>
                     <Column key={uuidv4()} droppableId={index} content={object} />)}
                 

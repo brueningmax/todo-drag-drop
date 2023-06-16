@@ -25,7 +25,6 @@ export default function Login() {
 
             const response = await api.post('auth/', data)
             if (response.status === 200) {
-                console.log(response.data)
                 dispatch(setUser(response.data))
                 setVisibility(false)
             }

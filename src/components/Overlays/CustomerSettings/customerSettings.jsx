@@ -1,12 +1,13 @@
 import { useState } from "react";
 import ExistingCustomerSettingsOverlay from "./existingCustomer";
 import NewCustomerSettingsOverlay from "./newCustomer";
+import { useSelector } from "react-redux";
 
 export default function CustomerSettingsOverlay({ exitFunction }) {
     const [selectedCustomers, setSelectedCustomers] = useState('');
     const [editExistingCustomer, setEditExistingCustomer] = useState(true);
     const [advancedRights, setadvancedRights] = useState(false);
-    const [availableCustomers, setAvailableCustomers] = useState(['xyz GmbH', 'Assi AG'])
+
 
     const handleSubmit = (e) => {
         e.preventDefault()

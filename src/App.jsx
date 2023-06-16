@@ -6,16 +6,19 @@ import Sidebar from './components/Sidebar/sidebar'
 import Login from './components/Overlays/Login/login'
 import { useEffect } from 'react'
 import api from './axios'
-import { useDispatch, useSelector } from 'react-redux'
-import { setTodos, testStore } from './Redux/Slices/todosSlice'
+import { useDispatch} from 'react-redux'
+import { setTodos } from './Redux/Slices/todosSlice'
+import { setClients } from './Redux/Slices/clientSlice'
 
 function App() {
 
   const dispatch = useDispatch()
 
   const getBoard = async() => {
-    const response = await api.get('board/')
+    let response = await api.get('board/')
     dispatch(setTodos(response.data))
+    response = await api.get('clients/')
+    dispatch(setClients(response.data))
   }
 
   useEffect(() => {
