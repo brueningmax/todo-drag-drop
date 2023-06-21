@@ -10,7 +10,7 @@ export default function Column({ content, droppableId }) {
 
     const assignColumnHead = (content) => {
         switch (content.user.name) {
-            case "Nicht zugeordnet":
+            case "not assigned":
                 return <NotAssignedColumnHead user={content.user} />
             case "completed":
                 return <CompletedColumnHead user={content.user} />
