@@ -15,7 +15,7 @@ export default function ExistingCustomerSettingsOverlay({ exitFunction, editTogg
     const token = useSelector(store => store.user.token)
 
     const [selectedIndex, setSelectedIndex] = useState(0);
-    const availableCustomers = useSelector(store => [emptyCustomer, ...store.clients.list])
+    const availableCustomers = useSelector(store => [...store.clients.list])
     const [selectedCustomers, setSelectedCustomers] = useState(availableCustomers[0]);
 
     const [clientName, setClientName] = useState('')

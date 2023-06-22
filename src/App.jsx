@@ -4,17 +4,19 @@ import Kanban from './components/Kanban/kanban'
 import SearchBar from './components/Searchbar/searchbar'
 import Sidebar from './components/Sidebar/sidebar'
 import Login from './components/Overlays/Login/login'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import api from './axios'
-import { useDispatch} from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { setTodos } from './Redux/Slices/todosSlice'
 import { setClients } from './Redux/Slices/clientSlice'
+import { Spinner } from './components/Spinner'
 
 function App() {
-
+  const [loading, setLoading] = useState(true)
   const dispatch = useDispatch()
+  const token = useSelector(store => store.user.token)
 
-  const getBoard = async() => {
+  const getBoard = async () => {
     let response = await api.get('board/')
     dispatch(setTodos(response.data))
     response = await api.get('clients/')
@@ -23,16 +25,24 @@ function App() {
 
   useEffect(() => {
     getBoard()
+    setLoading(false)
     setInterval(getBoard, 30000)
   }, [])
-  
+
   return (
     <div className='flex fixed top-0 left-0 w-full h-full'>
-      <Login/>
+      <Login />
       <Sidebar />
       <Main>
-        <SearchBar />
-        <Kanban/>
+        {loading ?
+          <div className='w-full h-full flex items-center justify-center'>
+            <Spinner />
+          </div>
+          : <>
+            <SearchBar />
+            <Kanban />
+          </>
+        }
       </Main>
     </div>
   )

@@ -20,6 +20,9 @@ export const todosSlice = createSlice({
             }
             state.list.splice(state.list.length - 1, 0, user);
         },
+        deleteCompleted: (state) => {
+            state.list[1].todos = []
+        },
         deleteUser: (state, action) => {
             let indexToDelete = state.list.findIndex(column => column.user.id == action.payload && column.user.id !== 1 && column.user.id !== 2)
             state.list.splice(indexToDelete, 1)

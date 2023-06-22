@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Overlay from "../BaseOverlay/baseOverlay"
 import { useDispatch, useSelector } from "react-redux"
 import { setUser } from "../../../Redux/Slices/userSlice"
@@ -8,12 +8,20 @@ import api from "../../../axios"
 export default function Login() {
     const dispatch = useDispatch()
 
-    const user = useSelector(store => store.user.user)
+    const token = useSelector(store => store.user.token)
 
     const [visibility, setVisibility] = useState(true)
     const [username, setUsername] = useState('Admin')
     const [password, setPasswort] = useState('admin')
     const [wrongInput, setWrongInput] = useState(false)
+
+    useEffect(() => {
+        if (token) {
+            setVisibility(false)
+        } else if (!token) {
+            setVisibility(true)
+        }
+    }, [token])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -22,11 +30,9 @@ export default function Login() {
             password: password
         })
         try {
-
             const response = await api.post('auth/', data)
             if (response.status === 200) {
                 dispatch(setUser(response.data))
-                setVisibility(false)
             }
         } catch (err) {
             if (err.response.status === 401) {
@@ -38,13 +44,19 @@ export default function Login() {
 
     }
 
+    const exitFunction = () => {
+        if (token) {
+            setVisibility(false)
+        }
+    }
+
     // const handleClose = () => {
     //     console.log(BrowserWindow)
     //     ipcRenderer.send('close-window');
     //   };
 
     return (
-        <Overlay customStyling="bg-darkBlue bg-opacity-100" visibilityCondition={visibility} exitFunction={setVisibility}>
+        <Overlay customStyling="bg-darkBlue bg-opacity-100" visibilityCondition={visibility} exitFunction={exitFunction}>
             <form className="overlay">
                 <div className="flex justify-between w-full">
                     <label >Benutzername</label>

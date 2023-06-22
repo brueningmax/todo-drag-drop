@@ -11,6 +11,7 @@ import { useSelector } from 'react-redux';
 
 export default function Kanban() {
     const boardData = useSelector((store) => store.todos.list)
+    const isAdmin = useSelector(store => store.user.user.isAdmin)
     const [state, setState] = useState(boardData);
     const [newUserVisibility, setnewUserVisibility] = useState(false)
 
@@ -72,17 +73,18 @@ export default function Kanban() {
             <Overlay visibilityCondition={newUserVisibility} exitFunction={setnewUserVisibility} >
                 <NewUserOverlay exitFunction={setnewUserVisibility} />
             </Overlay>
-        <DragDropContext onDragEnd={handleOnDragEnd} >
-            <div className='flex w-full h-full overflow-y-hidden gap-1.5'>
-                {state.map((object, index) =>
-                    <Column key={uuidv4()} droppableId={index} content={object} />)}
-                
+            <DragDropContext onDragEnd={handleOnDragEnd} >
+                <div className='flex w-full h-full overflow-y-hidden gap-1.5'>
+                    {state.map((object, index) =>
+                        <Column key={uuidv4()} droppableId={index} content={object} />)}
+                    {isAdmin &&
                     <button className="flex justify-center items-center btn bg-lightBlue mt-2.5" onClick={() => setnewUserVisibility(true)}>
-                    <img src={SVG} className='w-6 invert' />
-                </button>
-            </div>
+                        <img src={SVG} className='w-6 invert' />
+                    </button>
+                    }
+                </div>
 
-        </DragDropContext>
+            </DragDropContext>
         </>
     );
 }

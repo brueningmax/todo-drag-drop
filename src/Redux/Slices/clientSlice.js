@@ -9,6 +9,10 @@ export const clientSlice = createSlice({
         setClients: (state, action) => {
             state.list = action.payload;
         },
+        addClient: (state, action) => {
+            state.list.push(action.payload)
+            state.list.sort((a, b) => a.name.localeCompare(b.name))
+        },
         updateClient: (state, action) => {
             let index = state.list.findIndex(client => client.id === action.payload.id)
             let updatedClient = state.list[index]
@@ -22,5 +26,5 @@ export const clientSlice = createSlice({
         },
     }
 })
-export const { setClients, updateClient, deleteClient } = clientSlice.actions;
+export const { setClients, updateClient, deleteClient, addClient } = clientSlice.actions;
 export default clientSlice.reducer;
