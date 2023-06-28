@@ -8,7 +8,7 @@ export default function CompletedColumnHead({ user }) {
     const token = useSelector(store => store.user.token)
     const isAdmin = useSelector(store => store.user.user.isAdmin)
 
-    const deleteCompleted = async () => {
+    const deleteCompletedHandler = async () => {
         let config = {
             headers: { 
               'Authorization': `Bearer ${token}`
@@ -28,7 +28,7 @@ export default function CompletedColumnHead({ user }) {
                 Erledigt
             </p>
             {isAdmin &&
-            <button className="flex justify-center items-center btn bg-urgent hover:bg-red-600 " onClick={deleteCompleted}>
+            <button className="flex justify-center items-center btn bg-urgent hover:bg-red-600 " onClick={deleteCompletedHandler}>
                 <img src={SVG} className='w-6 invert' />
             </button>
             }

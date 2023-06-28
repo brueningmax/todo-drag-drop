@@ -1,12 +1,14 @@
 import { Droppable } from '@hello-pangea/dnd';
 import DraggableItem from '../Item/draggableItem';
-import { v4 as uuidv4 } from 'uuid';
 import DefaultColumnHead from './ColumnHeads/columnHead';
 import NotAssignedColumnHead from './ColumnHeads/notAssignedHead'
 import CompletedColumnHead from './ColumnHeads/completedColumnHead'
 import Todo from '../../Todo/todo';
+import { useSelector } from 'react-redux';
 
 export default function Column({ content, droppableId }) {
+
+    const isAdmin = useSelector(store => store.user.user.isAdmin)
 
     const assignColumnHead = (content) => {
         switch (content.user.name) {
@@ -25,12 +27,16 @@ export default function Column({ content, droppableId }) {
                 <div className='flex flex-col gap-2.5 flex-grow-1 bg-white rounded-2xl w-52 py-2.5'>
                     {assignColumnHead(content)}
                     <ul className="flex flex-col overflow-y-scroll h-full scrollbar pb-2.5 pl-1.5 " {...provided.droppableProps} ref={provided.innerRef}>
-                        {content.todos.map((todo, index) =>
-
-                            <DraggableItem key={todo.id} item={todo} index={index}>
-                                <Todo todo={todo} className='border-2 bg-red-500 p-2'/>
-                            </DraggableItem>
-
+                        {content.todos.map((todo, index) => {
+                            if (isAdmin) {
+                                return (
+                                    <DraggableItem key={todo.id} item={todo} index={index} >
+                                        <Todo todo={todo} className='border-2 bg-red-500 p-2' />
+                                    </DraggableItem>
+                                )} else {
+                                    return <Todo todo={todo} key={todo.id}className='border-2 bg-red-500 p-2' />
+                                }
+                            }
                         )}
                         {provided.placeholder}
                     </ul>

@@ -13,7 +13,14 @@ export const months = [
   { name: 'Dezember', value: 'dec' }
 ];
 
-export const types = ['Buchhaltung', 'Jahresabschluss', 'Steuern', 'Personalwesen', 'Sonstiges'];
+export const types = [
+  'Buchhaltung', 
+  'Jahresabschluss', 
+  'Steuern', 
+  'Personalwesen', 
+  'Sonstiges'
+];
+
 export const priorities = [
   { name: 'Löhne', value: 'salary' },
   { name: 'Hoch', value: 'high' },
