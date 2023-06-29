@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
+import {setTodos} from '../../../../Redux/Slices/todosSlice'
 import SVG from '../../../../assets/icons/bin.svg'
 import api from '../../../../axios'
 
@@ -15,8 +16,8 @@ export default function CompletedColumnHead({ user }) {
             },
           };
         const response = await api.delete('todos/deleteCompleted', config)
-        if (response.status === 204) {
-            dispatch(deleteCompleted)
+        if (response.status === 200) {
+            dispatch(setTodos(response.data))
         } else {
             alert('Etwas ist schief gelaufen. Bitte versuche es noch einmal')
         }
