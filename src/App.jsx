@@ -26,7 +26,7 @@ function App() {
   useEffect(() => {
     getBoard()
     setLoading(false)
-    setInterval(getBoard, 30000)
+    setInterval(getBoard, 1800000)
   }, [])
 
   return (

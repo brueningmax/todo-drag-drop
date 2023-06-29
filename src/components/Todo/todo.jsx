@@ -9,18 +9,30 @@ export default function Todo({ todo }) {
     const [detailsVisible, setDetailsVisibility] = useState(false)
 
     const divStyling = "flex w-full justify-between text-sm "
-
+    const months = {
+        jan: 'Januar',
+        feb: 'Februar',
+        mar: 'März',
+        apr: 'April',
+        may: 'Mai',
+        jun: 'Juni',
+        jul: 'Juli',
+        aug: 'August',
+        sep: 'September',
+        oct: 'Oktober',
+        nov: 'November',
+        dec: 'Dezember'
+    };
     const colors = {
         salary: 'bg-urgent',
         high: 'bg-high',
         medium: 'bg-medium',
         low: 'bg-low',
     }
-
-    const statusColors = {
-        open: 'bg-urgent',
-        inProcess: 'bg-medium',
-        completed: 'bg-low',
+    const status = {
+        open: {name: 'Unbearbeitet', color: 'bg-urgent'},
+        inProcess: { name: 'In Bearbeitung', color: 'bg-medium'},
+        completed: { name: 'Abgeschlossen', color: 'bg-low'}
     }
 
     const priorities = {
@@ -53,12 +65,12 @@ export default function Todo({ todo }) {
                         </div>
                         <div className={divStyling}>
                             <span>Zeitraum</span>
-                            <span>{todo.month} {todo.year}</span>
+                            <span>{months[todo.month]} {todo.year}</span>
                         </div>
                         <div className={divStyling + " items-center"}>
                             <span>Status</span>
-                            <div className={`w-2.5 h-2.5 ${statusColors[todo.status]} rounded-full ml-auto mr-1`}></div>
-                            <span>{todo.status}</span>
+                            <div className={`w-2.5 h-2.5 ${status[todo.status].color} rounded-full ml-auto mr-1`}></div>
+                            <span>{status[todo.status].name}</span>
                         </div>
                     </div>
                     {todo.notes &&
